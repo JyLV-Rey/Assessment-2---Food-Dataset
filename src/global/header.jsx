@@ -44,26 +44,6 @@ export default function Header() {
                 <span className="hidden md:inline">Items</span>
               </Link>
             </li>
-
-            <li className="flex">
-              <Link
-                to="/temporal"
-                className={`hover:text-neutral-700 ${text_class}`}
-              >
-                <ChartBar className="w-8 h-8 md:mr-2 md:mb-1 md:inline md:h-5 md:w-5" />
-                <span className="hidden md:inline">Temporal Stats</span>
-              </Link>
-            </li>
-
-            <li className="flex">
-              <Link
-                to="/advanced"
-                className={`hover:text-neutral-700 ${text_class}`}
-              >
-                <UserCircle2 className="w-8 h-8 md:mr-2 md:mb-1 md:inline md:h-5 md:w-5" />
-                <span className="hidden md:inline">Advanced Stats</span>
-              </Link>
-            </li>
           </ul>
         </nav>
       </section>

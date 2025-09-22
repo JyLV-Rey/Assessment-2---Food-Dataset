@@ -5,8 +5,11 @@ import RankStoresByProfit from "./components/RankStoresByProfit";
 import data from "../../data.json";
 import RankStoresByItemsSold from "./components/RankStoresByItemsSold";
 import RankStoresByOrderID from "./components/RankStoresByOrderID";
+import { buildMonthlyRevenue } from "./components/helper";
+import MonthlyRevenueChart from "./components/MonthlyRevenueChart";
 export default function Store() {
   const stores = ["Store A", "Store B", "Store C", "Store D"];
+  const montlyRevenueData = buildMonthlyRevenue(data);
 
   return (
     <>
@@ -19,12 +22,12 @@ export default function Store() {
           These are the statistics of the orders and the items of the stores.
         </h2>
       </div>
-      <div className="grid w-full grid-cols-2">
+      <div className="grid w-full grid-cols-1 md:grid-cols-2">
         <div className="flex flex-col items-center justify-center gap-5 p-5 text-sm w-fit shadow-lg/5">
           <p className="text-2xl font-extrabold">
             Most Ordered Category Per Store
           </p>
-          <div className="grid items-center justify-center grid-cols-2 gap-2 w-fit">
+          <div className="grid items-center justify-center grid-cols-1 gap-2 w-fit lg:grid-cols-2">
             {stores.map((store, i) => (
               <div className="flex flex-col text-xs w-80">
                 <MostOrderedCategoryPerStore
@@ -47,7 +50,7 @@ export default function Store() {
           <p className="text-2xl font-extrabold">
             Most Ordered Dishes Per Store
           </p>
-          <div className="grid items-center justify-center grid-cols-2 gap-2 w-fit">
+          <div className="grid items-center justify-center grid-cols-1 gap-2 w-fit lg:grid-cols-2">
             {stores.map((store, i) => (
               <div className="flex flex-col text-xs w-80">
                 <MostOrderedDishesPerStore
@@ -70,7 +73,7 @@ export default function Store() {
       </div>{" "}
       <div className="flex flex-col items-center justify-center gap-5 p-5 text-sm w-fit shadow-lg/5">
         <p className="text-2xl font-extrabold">Store Ranking</p>
-        <div className="grid items-center justify-center grid-cols-3 gap-2 w-fit">
+        <div className="grid items-center justify-center grid-cols-1 gap-2 w-fit md:grid-cols-3">
           <div className="flex flex-col text-xs w-80">
             <p className="text-lg font-bold text-center">Profit</p>
             <RankStoresByProfit data={data} />
@@ -93,6 +96,27 @@ export default function Store() {
           highly dependent on the number of items sold than the orders. Store D
           maintains competitive profit despite slightly fewer orders, this
           heavily suggests a higher average order value per transaction.
+        </p>
+      </div>
+      <div className="flex flex-col items-center justify-center w-full gap-5 p-5 text-sm shadow-lg/5">
+        <p className="text-2xl font-extrabold">Monthly Revenue Per Store</p>
+        <div className="grid items-center justify-center grid-cols-1 gap-2 w-fit md:grid-cols-2 xl:grid-cols-4">
+          {montlyRevenueData.map((store, i) => (
+            <div className="flex flex-col text-xs w-80" key={i}>
+              <MonthlyRevenueChart
+                storeName={store.store}
+                data={store.history}
+              />
+              <p className="font-bold text-center">{store.store}</p>
+            </div>
+          ))}
+        </div>
+        <p className="text-center break-words">
+          The revenue of the stores had a rough time during the early months of
+          2024 (February - April), but the stores have recovered and spiked in
+          revenue during the year end. All stores follow this trend which means
+          that there is a seasonal demand for such food stores and products in
+          general.
         </p>
       </div>
     </>

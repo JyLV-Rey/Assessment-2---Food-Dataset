@@ -24,7 +24,7 @@ export default function PriceTimelineChart({
   itemName,
   data,
   color = "#8884d8",
-  height = 150,
+  height = 200,
 }) {
   return (
     <div className="w-full">
@@ -32,7 +32,7 @@ export default function PriceTimelineChart({
       <ResponsiveContainer width="100%" height={height}>
         <LineChart
           data={data}
-          margin={{ top: 0, right: 20, left: 0, bottom: 0 }}
+          margin={{ top: 10, right: 20, left: 0, bottom: 0 }}
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis

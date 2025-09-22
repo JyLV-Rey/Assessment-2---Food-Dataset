@@ -8,6 +8,7 @@ import {
 import HeroRankChart from "./components/HeroRankChart";
 import data from "../../data.json";
 import PriceTimelineChart from "./components/PriceTimelineChart";
+import StorePriceHistory from "./components/StorePriceHistory";
 
 export default function Items() {
   const mostOrderedItemsData = mostOrderedItems(data);
@@ -94,24 +95,7 @@ export default function Items() {
           This is how much each item changed in price throughout the entire
           dataset
         </p>
-        <div className="grid w-full grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
-          {priceHistory.map((store, i) => (
-            <div
-              key={i}
-              className="flex flex-col items-center justify-center w-full p-2 text-sm shadow-sm"
-            >
-              <p className="text-3xl font-extrabold">{store.store}</p>
-              {store.prices.map((price, i) => (
-                <div key={i} className="w-full text-xs">
-                  <PriceTimelineChart
-                    itemName={price.item}
-                    data={price.history}
-                  />
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
+        <StorePriceHistory priceHistory={priceHistory} />
       </div>
     </>
   );

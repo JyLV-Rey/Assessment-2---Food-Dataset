@@ -20,7 +20,7 @@ export default function RankStoresByProfit({ data }) {
     .sort((a, b) => b.profit - a.profit); // descending
 
   return (
-    <ResponsiveContainer width="100%" height={300}>
+    <ResponsiveContainer width="100%" height={150}>
       <BarChart
         data={chartData}
         margin={{ top: 20, right: 20, left: 0, bottom: 20 }}

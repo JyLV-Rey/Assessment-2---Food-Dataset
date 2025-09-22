@@ -1,7 +1,7 @@
 import data from "../../data.json";
 import { getStoreStats } from "./helpers";
 export default function Home() {
-  const storeStats = getStoreStats(data);
+  const { storeStats, grandTotals } = getStoreStats(data);
   return (
     <>
       <div className="flex flex-col items-center justify-center w-full">
@@ -55,6 +55,17 @@ export default function Home() {
               </div>
             </div>
           ))}
+        </div>
+        <div className="flex flex-col items-center justify-center gap-10 p-5 text-xl font-extrabold w-fit shadow-2xl/10 lg:flex-row">
+          <p className="p-5 shadow-md/5">
+            Total Orders: {grandTotals.orderCount}
+          </p>
+          <p className="p-5 shadow-md/5">
+            Total Quantity Sold: {grandTotals.totalQuantity}
+          </p>
+          <p className="p-5 shadow-md/5">
+            Total Income: ₱{grandTotals.totalIncome}
+          </p>
         </div>
       </div>
     </>
